@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "70ac6792-25d9-4887-8abf-c8a7769869e5",
+		"name": "Assignment for the Week POSTMAN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21636236"
+	},
+	"item": [
+		{
+			"name": "01-Create an Issue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var resp = pm.response.json();\r",
+							"pm.globals.set(\"IssueID\", resp.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "QhGCj1ORdywjG9xJHF7rBDA9",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "hari.radhakrishnan@testleaf.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n    \"project\":\r\n                {\r\n                    \"key\": \"LEAF\"\r\n                },\r\n    \"summary\": \"create issue in RA project\",\r\n    \"description\": \"Creating of an issue using project keys and issue type names using the REST API\",\r\n    \"issuetype\": {\r\n                    \"name\": \"Story\"\r\n                }\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-training.atlassian.net/rest/api/2/issue/",
+					"protocol": "https",
+					"host": [
+						"api-training",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "06-List all the Issues",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "QhGCj1ORdywjG9xJHF7rBDA9",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "hari.radhakrishnan@testleaf.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"self\": \"https://api-training.atlassian.net/rest/api/2/issuetype/10004\",\r\n        \"id\": \"10004\",\r\n        \"description\": \"A new feature of the product, which has yet to be developed.\",\r\n        \"iconUrl\": \"https://api-training.atlassian.net/secure/viewavatar?size=medium&avatarId=10311&avatarType=issuetype\",\r\n        \"name\": \"New Feature\",\r\n        \"subtask\": false,\r\n        \"avatarId\": 10311\r\n    },\r\n    {\r\n        \"self\": \"https://api-training.atlassian.net/rest/api/2/issuetype/10001\",\r\n        \"id\": \"10001\",\r\n        \"description\": \"An improvement or enhancement to an existing feature or task.\",\r\n        \"iconUrl\": \"https://api-training.atlassian.net/secure/viewavatar?size=medium&avatarId=10310&avatarType=issuetype\",\r\n        \"name\": \"Improvement\",\r\n        \"subtask\": false,\r\n        \"avatarId\": 10310\r\n    }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-training.atlassian.net/rest/api/2/issuetype?JQL=project+P%26created>=24h",
+					"protocol": "https",
+					"host": [
+						"api-training",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issuetype"
+					],
+					"query": [
+						{
+							"key": "JQL",
+							"value": "project+P%26created>=24h"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
